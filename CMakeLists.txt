@@ -16,7 +16,6 @@ file(GLOB_RECURSE MESHMONK_SOURCES "src/*.cpp")
 
 add_library(meshmonk SHARED meshmonk.cpp ${MESHMONK_SOURCES})
 target_link_libraries(meshmonk PRIVATE OpenMeshCore OpenMeshTools)
-set_target_properties(meshmonk PROPERTIES PUBLIC_HEADER ${MESHMONK_HEADERS})
 install(TARGETS meshmonk
-        LIBRARY DESTINATION lib
-        PUBLIC_HEADER DESTINATION include)
+        LIBRARY DESTINATION lib)
+install(FILES ${MY_HEADER_FILES} DESTINATION include)
