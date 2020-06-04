@@ -11,10 +11,10 @@ if(${CMAKE_SYSTEM_NAME} MATCHES Darwin)
 endif()
 include_directories(vendor)
 include_directories(eigen)
-file(GLOB_RECURSE MESHMONK_HEADERS "src/*.hpp")
-file(GLOB_RECURSE MESHMONK_SOURCES "src/*.cpp")
+file(GLOB_RECURSE MESHMONK_HEADERS "meshmonk.hpp src/*.hpp")
+file(GLOB_RECURSE MESHMONK_SOURCES "meshmonk.cpp src/*.cpp")
 
-add_library(meshmonk SHARED meshmonk.cpp ${MESHMONK_SOURCES})
+add_library(meshmonk SHARED ${MESHMONK_SOURCES})
 target_link_libraries(meshmonk PRIVATE OpenMeshCore OpenMeshTools)
 install(TARGETS meshmonk
         LIBRARY DESTINATION lib)
