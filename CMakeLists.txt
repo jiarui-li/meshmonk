@@ -9,7 +9,6 @@ endif()
 if(${CMAKE_SYSTEM_NAME} MATCHES Darwin)
     set(CMAKE_CXX_FLAGS "--verbose -Wall -fexceptions -O2 -Wall -std=c++14 -g -Wl,-V -fPIC -c")
 endif()
-add_subdirectory(OpenMesh)
 include_directories(vendor)
 include_directories(eigen)
 
