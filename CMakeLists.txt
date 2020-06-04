@@ -11,6 +11,12 @@ if(${CMAKE_SYSTEM_NAME} MATCHES Darwin)
 endif()
 include_directories(vendor)
 include_directories(eigen)
+file(GLOB_RECURSE MESHMONK_HEADERS "src/*.hpp")
+file(GLOB_RECURSE MESHMONK_SOURCES "src/*.cpp")
 
-add_library(meshmonk SHARED meshmonk.cpp src/BaseCorrespondenceFilter.cpp src/CorrespondenceFilter.cpp src/Downsampler.cpp src/helper_functions.cpp src/InlierDetector.cpp src/NeighbourFinder.cpp src/NonrigidRegistration.cpp src/PyramidNonrigidRegistration.cpp src/RigidRegistration.cpp src/RigidTransformer.cpp src/ScaleShifter.cpp src/SymmetricCorrespondenceFilter.cpp src/ViscoElasticTransformer.cpp)
+add_library(meshmonk SHARED meshmonk.cpp ${MESHMONK_SOURCES})
 target_link_libraries(meshmonk PRIVATE OpenMeshCore OpenMeshTools)
+set_target_properties(meshmonk PROPERTIES PUBLIC_HEADER ${MESHMONK_HEADERS})
+install(TARGETS meshmonk
+        LIBRARY DESTINATION lib
+        PUBLIC_HEADER DESTINATION include)
